@@ -6,7 +6,8 @@ const server = express();
 
 
 server.get('/',(req,res) =>{
-  res.send('hello boss');
+
+  res.json(data)
   // res.sendFile('C:\Users\pp195\OneDrive\Desktop\express js\index.html');
 })
 
