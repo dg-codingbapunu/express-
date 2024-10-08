@@ -7,7 +7,10 @@ const server = express();
 
 server.get('/',(req,res) =>{
 
-  res.json(data)
+res.sendStatus(201)
+
+
+//  res.send('hello')
   // res.sendFile('C:\Users\pp195\OneDrive\Desktop\express js\index.html');
 })
 
