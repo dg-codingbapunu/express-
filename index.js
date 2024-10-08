@@ -5,14 +5,47 @@ const server = express();
 
 
 
-server.get('/',(req,res) =>{
+server.get('/',(req,res)=> {
+    res.json({type:'GET'})
+})
 
-res.sendStatus(201)
+
+server.post('/',(req,res)=> {
+  res.json({type:'POST'})
+})
 
 
+server.put('/',(req,res)=> {
+  res.json({type:'PUT'})
+})
+
+
+server.delete('/',(req,res)=> {
+  res.json({type:'DELETE'})
+})
+
+server.patch('/',(req,res)=> {
+  res.json({type:'PATCH'})
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// server.get('/demo',(req,res) =>{
+// res.sendStatus(201)
 //  res.send('hello')
   // res.sendFile('C:\Users\pp195\OneDrive\Desktop\express js\index.html');
-})
+// })
 
 
 
