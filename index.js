@@ -1,17 +1,14 @@
 console.log("hello");
 const express = require('express');
-
+const morgan = require('morgan');
 const server = express();
 server.use(express.json());
 
 
+server.use(morgan('public'));
 server.use(express.static('public'));
 
-server.use((req,res,next)=> {
-  console.log(req.method,req.ip,req.hostname,new Date(),req.get('User-Agent'));
-  next();
-  
-});
+
 
 const auth = (req,res,next) => {
 
