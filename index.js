@@ -2,16 +2,29 @@ console.log("hello");
 const express = require('express');
 
 const server = express();
-
+server.use(express.json());
 server.use((req,res,next)=> {
   console.log(req.method,req.ip,req.hostname,new Date(),req.get('User-Agent'));
   next();
   
 });
 
+const auth = (req,res,next) => {
+
+if(req.body.password == '123'){
+  next();
+} else{
+  res.sendStatus(401)
+}
+
+
+}
+
+
+
 // API- end point - route
 
-server.get('/',(req,res)=> {
+server.get('/',auth,(req,res)=> {
     res.json({type:'GET'})
 })
 
