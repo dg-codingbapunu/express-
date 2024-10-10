@@ -1,37 +1,42 @@
-console.log("hello");
+
 const express = require('express');
 const morgan = require('morgan');
+const fs = require('fs');
 const server = express();
+// body parser
 server.use(express.json());
+server.use(express.static('public'))
 
 
-server.use(morgan('public'));
-server.use(express.static('public'));
+  const data = JSON.parse(fs.readFileSync('data.json', 'utf-8')); // Correct method name
+  const products = data.products;
 
 
 
-const auth = (req,res,next) => {
-
-if(req.body.password == '123'){
-  next();
-} else{
-  res.sendStatus(401)
-}
+ 
+  
+// } catch (err) {
+//   console.error("Error reading or parsing the file:", err);
+// }
 
 
-}
+
 
 
 
 // API- end point - route
 
-server.get('/',auth,(req,res)=> {
-    res.json({type:'GET'})
+// Products
+
+server.get('/products',(req,res)=> {
+    res.json(products)
 })
-
-
+server.get('/products/:id',(req,res)=> {
+  res.json(products)
+})
+// create api / products
 server.post('/',(req,res)=> {
-  res.json({type:'POST'})
+  res.json(products)
 })
 
 
