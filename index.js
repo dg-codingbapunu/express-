@@ -18,10 +18,22 @@ const products = data.products;
 
   })
 
+  const auth = (req,res,next) =>{
 
+    console.log();
 
+    if (req.query.password == '123') {
+      next();
 
+    }  else {
 
+      res.sendStatus(401);
+    }
+ 
+
+  
+  }
+  
 
 
 
@@ -33,10 +45,11 @@ const products = data.products;
 
   server.get('/',(req,res)=> {
     res.json({type:'GET'})
+    
   })
 
 
-  server.post('/',(req,res)=> {
+  server.post('/',auth,(req,res)=> {
     res.json({type:'POST'})
   })
 
@@ -58,7 +71,7 @@ const products = data.products;
 
   server.patch('/',(req,res)=> {
     res.json({type:'PATCH'})
-  })
+  }),
 
 
 
