@@ -6,9 +6,30 @@ const products = data.products;
     // new  code -------////   ------------
 
   const express = require('express');
-const { type } = require('os');
+
 
   const server = express();
+
+
+  server.use((req,res,next) =>{
+
+    console.log(req.method,req.ip,req.hostname,req.get('User-Agent'));
+    next();
+
+  })
+
+
+
+
+
+
+
+
+
+ 
+
+
+  // API - endpoints - Route
 
   server.get('/',(req,res)=> {
     res.json({type:'GET'})
