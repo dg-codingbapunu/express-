@@ -36,9 +36,15 @@ const products = data.products;
      res.json(product) // to read or get one product
     
   })
+  // create/post/products
 
-  server.post('/',(req,res)=> {
-    res.json({type:'POST'})
+
+  server.post('/products',(req,res)=> {
+
+    console.log(req.body);
+    products.push(req.body);
+
+    res.json(req.body);
   })
 
 
