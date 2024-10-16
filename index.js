@@ -14,7 +14,19 @@ const products = data.products;
 
     server.use(express.static('public'));// static hoisting middleware
 
-  
+   // create/post/products
+
+
+   server.post('/products',(req,res)=> {
+
+    console.log(req.body);
+    products.push(req.body);
+
+    res.status(201).json(req.body);
+  })
+
+
+ 
 
   // API - endpoints - Route
 
@@ -36,22 +48,32 @@ const products = data.products;
      res.json(product) // to read or get one product
     
   })
-  // create/post/products
+ 
 
 
-  server.post('/products',(req,res)=> {
-
-    console.log(req.body);
-    products.push(req.body);
-
-    res.json(req.body);
-  })
+/// update api ???------PUT
 
 
-  server.put('/',(req,res)=> {
-    res.json({type:'PUT'})
-  })
+server.put('/products/:id',(req,res)=> {
+   
+  const id = +req.params.id;
+const productIndex =   products.findIndex(p=>p.id === id)
+products.splice(productIndex,1,{...req.body,id:id})
 
+
+   res.status(201).json() ;
+  
+})
+
+
+
+
+
+
+
+
+
+ 
 
 
 
