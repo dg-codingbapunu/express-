@@ -12,6 +12,8 @@ const products = data.products;
 
   server.use(express.json()); // body parser
 
+    server.use(express.static('public'));// static hoisting middleware
+
   server.use((req,res,next) =>{
 
     console.log(req.method,req.ip,req.hostname,req.get('User-Agent'));
