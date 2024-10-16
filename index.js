@@ -6,20 +6,20 @@ const products = data.products;
     // new  code -------////   ------------
 
   const express = require('express');
-
+    const morgan = require('morgan');
 
   const server = express();
-
+  server.use(morgan('default'));
   server.use(express.json()); // body parser
 
     server.use(express.static('public'));// static hoisting middleware
 
-  server.use((req,res,next) =>{
+  // server.use((req,res,next) =>{
 
-    console.log(req.method,req.ip,req.hostname,req.get('User-Agent'));
-    next();
+  //   console.log(req.method,req.ip,req.hostname,req.get('User-Agent'));
+  //   next();
 
-  })
+  // })
 
   const auth = (req,res,next) =>{
 
