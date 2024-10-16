@@ -75,20 +75,25 @@ products.splice(productIndex,1,{...req.body,id:id})
 
  
 
+// DELETE API
 
+  server.delete('/products/:id',(req,res)=> {
 
-  server.delete('/',(req,res)=> {
-    res.json({type:'DELETE'})
+    const id = + req.params.id;
+
+    const productIndex = products.findIndex(p=> p.id === id)
+     const product = products[productIndex]
+    products.splice(productIndex,1)
+
+    res.status(201).json(product)
+
   })
 
 
 
 
 
-  server.patch('/',(req,res)=> {
-    res.json({type:'PATCH'})
-  }),
-
+ 
 
 
 
