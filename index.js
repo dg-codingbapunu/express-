@@ -10,6 +10,7 @@ const products = data.products;
 
   const server = express();
 
+  server.use(express.json()); // body parser
 
   server.use((req,res,next) =>{
 
@@ -20,9 +21,9 @@ const products = data.products;
 
   const auth = (req,res,next) =>{
 
-    console.log();
+    // console.log();
 
-    if (req.query.password == '123') {
+    if (req.body.password == '123') {
       next();
 
     }  else {
@@ -43,7 +44,7 @@ const products = data.products;
 
   // API - endpoints - Route
 
-  server.get('/',(req,res)=> {
+  server.get('/',auth,(req,res)=> {
     res.json({type:'GET'})
     
   })
