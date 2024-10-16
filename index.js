@@ -14,48 +14,30 @@ const products = data.products;
 
     server.use(express.static('public'));// static hoisting middleware
 
-  // server.use((req,res,next) =>{
-
-  //   console.log(req.method,req.ip,req.hostname,req.get('User-Agent'));
-  //   next();
-
-  // })
-
-  const auth = (req,res,next) =>{
-
-    // console.log();
-
-    // if (req.body.password == '123') {
-    //   next();
-
-    // }  else {
-
-    //   res.sendStatus(401);
-    // }
- 
-    next();
   
-  }
-  
-
-
-
-
- 
-
 
   // API - endpoints - Route
 
-  server.get('/product/:id',auth,(req,res)=> {
-    console.log(req.params);
-    
+  // API ROOT, base URL
 
-    res.json({type:'GET'})
+  server.get('/products',(req,res)=> {
+   
+    res.json(products) // read api Get /products
     
   })
 
 
-  server.post('/',auth,(req,res)=> {
+
+  server.get('/products/:id',(req,res)=> {
+   
+    const id = +req.params.id;
+  const product =   products.find(p=>p.id == id)
+
+     res.json(product) // to read or get one product
+    
+  })
+
+  server.post('/',(req,res)=> {
     res.json({type:'POST'})
   })
 
