@@ -9,7 +9,7 @@ const products = data.products;
     const morgan = require('morgan');
 
   const server = express();
-  server.use(morgan('default'));
+  // server.use(morgan('default'));
   server.use(express.json()); // body parser
 
     server.use(express.static('public'));// static hoisting middleware
@@ -25,15 +25,15 @@ const products = data.products;
 
     // console.log();
 
-    if (req.body.password == '123') {
-      next();
+    // if (req.body.password == '123') {
+    //   next();
 
-    }  else {
+    // }  else {
 
-      res.sendStatus(401);
-    }
+    //   res.sendStatus(401);
+    // }
  
-
+    next();
   
   }
   
@@ -46,7 +46,10 @@ const products = data.products;
 
   // API - endpoints - Route
 
-  server.get('/',auth,(req,res)=> {
+  server.get('/product/:id',auth,(req,res)=> {
+    console.log(req.params);
+    
+
     res.json({type:'GET'})
     
   })
