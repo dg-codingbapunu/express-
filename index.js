@@ -1,7 +1,5 @@
 
-
-    // new  code -------////   ------------
-
+const controller = require('./controller/product.js')
   const express = require('express');
     const morgan = require('morgan');
 
@@ -18,33 +16,16 @@
    // create/post/products
 
 
-  server.post('/products',createPost); // create
+  server.post('/products',controller.createPost); // create
 
-  server.get('/products',getAllProducts); // read all products
+  server.get('/products',controller.getAllProducts); // read all products
 
-  server.get('/products/:id',getSingleProduct) // read single product
+  server.get('/products/:id',controller.getSingleProduct) // read single product
 
-  server.put('/products/:id',replaceProduct); // update product
-
-
-  server.delete('/products/:id',deleteProduct) // delete product
+  server.put('/products/:id',controller.replaceProduct); // update product
 
 
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
+  server.delete('/products/:id',controller.deleteProduct) // delete product
 
 
 
