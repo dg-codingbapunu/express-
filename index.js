@@ -14,80 +14,77 @@ const products = data.products;
 
     server.use(express.static('public'));// static hoisting middleware
 
+
+    const createPost = (req,res)=> {
+
+      console.log(req.body);
+      products.push(req.body);
+  
+      res.status(201).json(req.body);
+    }
+
+
+
+
+    const getAllProducts = (req,res)=> {
+   
+      res.json(products) // read api Get /products
+      
+    }
+
+
+    const getSingleProduct = (req,res)=> {
+   
+      const id = +req.params.id;
+    const product =   products.find(p=>p.id == id)
+  
+       res.json(product) // to read or get one product
+      
+    }
+
+
+    const replaceProduct = (req,res)=> {
+   
+      const id = +req.params.id;
+    const productIndex =   products.findIndex(p=>p.id === id)
+    products.splice(productIndex,1,{...req.body,id:id})
+    
+    
+       res.status(201).json() ;
+      
+    }
+
+
+
+    const deleteProduct = (req,res)=> {
+
+      const id = + req.params.id;
+  
+      const productIndex = products.findIndex(p=> p.id === id)
+       const product = products[productIndex]
+      products.splice(productIndex,1)
+  
+      res.status(201).json(product)
+  
+    }
+
+
+
+
+
    // create/post/products
 
 
-   server.post('/products',(req,res)=> {
+  server.post('/products',createPost); // create
 
-    console.log(req.body);
-    products.push(req.body);
+  server.get('/products',getAllProducts); // read all products
 
-    res.status(201).json(req.body);
-  })
+  server.get('/products/:id',getSingleProduct) // read single product
 
-
- 
-
-  // API - endpoints - Route
-
-  // API ROOT, base URL
-
-  server.get('/products',(req,res)=> {
-   
-    res.json(products) // read api Get /products
-    
-  })
+  server.put('/products/:id',replaceProduct); // update product
 
 
-
-  server.get('/products/:id',(req,res)=> {
-   
-    const id = +req.params.id;
-  const product =   products.find(p=>p.id == id)
-
-     res.json(product) // to read or get one product
-    
-  })
- 
-
-
-/// update api ???------PUT
-
-
-server.put('/products/:id',(req,res)=> {
-   
-  const id = +req.params.id;
-const productIndex =   products.findIndex(p=>p.id === id)
-products.splice(productIndex,1,{...req.body,id:id})
-
-
-   res.status(201).json() ;
-  
-})
-
-
-
-
-
-
-
-
-
- 
-
-// DELETE API
-
-  server.delete('/products/:id',(req,res)=> {
-
-    const id = + req.params.id;
-
-    const productIndex = products.findIndex(p=> p.id === id)
-     const product = products[productIndex]
-    products.splice(productIndex,1)
-
-    res.status(201).json(product)
-
-  })
+  server.delete('/products/:id',deleteProduct) // delete product
 
 
 
