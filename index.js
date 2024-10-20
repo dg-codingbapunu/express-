@@ -1,9 +1,9 @@
-
+require('dotenv').config();
 const controller = require('./controller/product.js')
   const express = require('express');
     const morgan = require('morgan');
 
- // jmP$mh65U6$%F$2
+ 
 console.log(process.env.DB_PASSWORD);
 
   const server = express();
