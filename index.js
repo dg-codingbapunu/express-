@@ -10,7 +10,7 @@ console.log(process.env.DB_PASSWORD);
   // server.use(morgan('default'));
   server.use(express.json()); // body parser
 
-    server.use(express.static('public'));// static hoisting middleware
+    server.use(express.static(process.env.PUBLIC_DIR));// static hoisting middleware
     const productRouter = express.Router();
    
     server.use('/',productRouter);
