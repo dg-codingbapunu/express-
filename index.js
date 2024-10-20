@@ -35,7 +35,7 @@ console.log(process.env.DB_PASSWORD);
 
 
 
-  server.listen(8080,() =>{
+  server.listen(process.env.PORT,() =>{
     console.log('server start');
     
   });
