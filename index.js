@@ -3,7 +3,7 @@ require('dotenv').config();
   const express = require('express');
     const morgan = require('morgan');
     const productRouter = require('./routes/product.js');
-
+const userRouter = require('./routes/user.js');
  
 console.log(process.env.DB_PASSWORD);
 
@@ -15,7 +15,7 @@ console.log(process.env.DB_PASSWORD);
    
    
     server.use('/products',productRouter.router); // middleware to attach router in server
-
+    server.use('/users',userRouter.router);
 
 
 
