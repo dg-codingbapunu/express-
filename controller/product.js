@@ -1,18 +1,17 @@
 const fs = require('fs');
 
-const  model = require('../models/product')
-const Product = model.Product;
 
+  const models = require('../models/product.js')
+
+const Product = models.Product;
 
 exports.createPost = (req,res)=> {
 
-
 const product  = new Product();
-
-product.title = 'iphone 19',
-product.price = 670;
-product.ratings = 4;
-
+product.title = "iphone 128",
+product.rating = 9,
+product.price= 90,
+  
 
   res.status(201).json(req.body);
 }

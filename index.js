@@ -3,6 +3,7 @@ require('dotenv').config();
   const express = require('express');
   const server = express();
     const morgan = require('morgan');
+    const mongoose = require('mongoose');
    
     const productRouter = require('./routes/product.js');
 const userRouter = require('./routes/user.js');
@@ -12,8 +13,16 @@ console.log(process.env.DB_PASSWORD);
 
 //  db connection code
 
+main().catch(err => console.log(err));
 
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/ecommerce');
+  console.log('database secure');
+  
+}
 
+ 
+ 
  
   // server.use(morgan('default'));
   server.use(express.json()); // body parser
@@ -22,7 +31,7 @@ console.log(process.env.DB_PASSWORD);
    
    
     server.use('/products',productRouter.router); // middleware to attach router in server
-    server.use('/users',userRouter.router);
+    // server.use('/users',userRouter.router);
 
 
 
