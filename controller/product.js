@@ -5,8 +5,8 @@ const Product = model.Product;
 const mongoose = require('mongoose');
 
 // Create
-exports.createProduct = (req, res) => {
-  const product = new Product(req.body);
+exports.createProduct = async(req, res) => {
+  const product = await new Product(req.body);
   product.save((err,doc)=>{
     console.log({err,doc})
     if(err){
@@ -20,7 +20,7 @@ exports.createProduct = (req, res) => {
 };
 
 exports.getAllProducts = async (req, res) => {
-  const products = await Product.find({price:{$gt:500}});
+  const products = await Product.find({});
   res.json(products);
 };
 
