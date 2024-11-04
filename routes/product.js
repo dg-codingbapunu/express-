@@ -1,5 +1,6 @@
 const express = require('express');
 const productController = require('../controller/product');
+const jwt = require('jwt');
 
 const router = express.Router();
 
